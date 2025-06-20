@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Take Care of Yourself 💕</title>
+    <title>I Think About You, I Care For You 💕</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
@@ -15,9 +15,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 50%, #ff9a9e 75%, #a8edea 100%);
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
             cursor: none;
         }
@@ -125,13 +125,15 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             z-index: 10;
             position: relative;
+            padding: 2rem;
+            overflow-y: auto;
         }
 
         .main-text {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff6b9d);
             background-size: 400% 400%;
@@ -140,8 +142,8 @@
             background-clip: text;
             animation: gradientShift 3s ease-in-out infinite, textFloat 6s ease-in-out infinite;
             text-align: center;
-            margin-bottom: 2rem;
-            line-height: 1.2;
+            margin-bottom: 3rem;
+            line-height: 1.3;
         }
 
         @keyframes gradientShift {
@@ -154,11 +156,34 @@
             50% { transform: translateY(-20px); }
         }
 
+        .poem-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            animation: fadeInUp 2s ease-out 1.5s forwards;
+        }
+
+        .poem {
+            font-size: 1.1rem;
+            color: rgba(139, 69, 19, 0.9);
+            line-height: 1.8;
+            text-align: left;
+            font-weight: 400;
+            font-style: italic;
+            white-space: pre-line;
+        }
+
         .message {
-            font-size: 1.4rem;
-            color: rgba(139, 69, 19, 0.8);
+            font-size: 1.3rem;
+            color: rgba(139, 69, 19, 0.85);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fadeInUp 2s ease-out 1s forwards;
             max-width: 600px;
@@ -320,12 +345,22 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .main-text {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .message {
                 font-size: 1.1rem;
-                padding: 0 2rem;
+                padding: 0 1rem;
+            }
+
+            .poem-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .poem {
+                font-size: 1rem;
+                line-height: 1.6;
             }
             
             .sun {
@@ -333,6 +368,10 @@
                 height: 80px;
                 top: 5%;
                 right: 10%;
+            }
+
+            .container {
+                padding: 1rem;
             }
         }
     </style>
@@ -348,41 +387,59 @@
     <div class="cloud cloud2"></div>
     
     <div class="container">
-        <h1 class="main-text">I like you so much 💕</h1>
+        <h1 class="main-text">I think about you, I care for you 💕</h1>
         <p class="message">
-            Please take care of yourself.<br>
-            You mean the world to me, and your wellbeing matters deeply.
+            You are always in my thoughts, and your happiness means everything to me.
         </p>
+        
+        <div class="poem-container">
+            <div class="poem">When your day feels heavy, and smiles run low, 
+I hope you feel lighter — just so you know.
+If silence ever creeps in, too quiet to bear,
+I'll still be here, with words and care.
+
+You tell me of code, and I quietly grin,
+The way you light up when you learn something within.
+Whether it's hashing or heartbeats or tea that you sip,
+I notice the calm in the curve of your lip.
+
+No flowers or stars, just simple and true —
+The little things matter, especially with you.
+So even on days when you're tired or slow,
+You're still someone special — just so you know.</div>
+        </div>
+        
         <button class="care-button" onclick="showLove()">Send Love ❤️</button>
     </div>
 
     <script>
-        // Create stars
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 2 + 's';
-                starsContainer.appendChild(star);
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            const heartSymbols = ['💕', '💖', '💗', '💝', '❤️', '💘'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heartsContainer.appendChild(heart);
             }
         }
 
-        // Create shooting stars
-        function createShootingStar() {
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star';
-            shootingStar.style.left = Math.random() * 100 + '%';
-            shootingStar.style.top = Math.random() * 50 + '%';
-            document.body.appendChild(shootingStar);
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 50 + '%';
+            document.body.appendChild(sparkle);
 
             setTimeout(() => {
-                shootingStar.remove();
-            }, 3000);
+                sparkle.remove();
+            }, 4000);
         }
 
         // Create floating particles
@@ -408,39 +465,77 @@
         });
 
         // Button interaction
-        function createMagic() {
+        function showLove() {
             // Create burst of particles
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     createParticle();
-                }, i * 100);
+                }, i * 80);
             }
             
-            // Create shooting stars
-            for (let i = 0; i < 5; i++) {
+            // Create sparkles
+            for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createShootingStar();
-                }, i * 200);
+                    createSparkle();
+                }, i * 150);
+            }
+
+            // Add extra hearts
+            const heartsContainer = document.querySelector('.hearts');
+            const heartSymbols = ['💕', '💖', '💗', '💝', '❤️', '💘'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = '3s';
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 100);
             }
 
             // Change button text temporarily
-            const button = document.querySelector('.dream-button');
+            const button = document.querySelector('.care-button');
             const originalText = button.textContent;
-            button.textContent = '✨ Magic Created! ✨';
+            button.textContent = '💖 Love Sent! 💖';
             setTimeout(() => {
                 button.textContent = originalText;
-            }, 2000);
+            }, 2500);
         }
 
         // Initialize
         window.addEventListener('load', () => {
-            createStars();
+            createHearts();
             
-            // Periodic shooting stars
-            setInterval(createShootingStar, 4000);
+            // Periodic sparkles
+            setInterval(createSparkle, 3000);
             
             // Periodic particles
-            setInterval(createParticle, 2000);
+            setInterval(createParticle, 2500);
+            
+            // Add more hearts periodically
+            setInterval(() => {
+                const heartsContainer = document.querySelector('.hearts');
+                if (heartsContainer.children.length < 20) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    const heartSymbols = ['💕', '💖', '💗', '💝', '❤️', '💘'];
+                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = '0s';
+                    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 8000);
+                }
+            }, 2000);
         });
 
         // Add click ripple effect
@@ -448,7 +543,7 @@
             const ripple = document.createElement('div');
             ripple.style.position = 'absolute';
             ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.background = 'rgba(255, 107, 157, 0.4)';
             ripple.style.transform = 'scale(0)';
             ripple.style.animation = 'ripple 0.6s linear';
             ripple.style.left = e.clientX - 25 + 'px';
